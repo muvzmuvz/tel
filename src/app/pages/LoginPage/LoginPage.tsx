@@ -6,7 +6,7 @@ export const LoginPage = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Авторизация:", {tel});
+       alert(`Авторизация: ${tel}`);
     };
 
     return (
@@ -30,6 +30,7 @@ export const LoginPage = () => {
                 <input
                     type="tel"
                     placeholder="+7 912 123 45 67"
+                    maxLength={12}
                     value={tel}
                     onChange={(e) => setTel(e.target.value)}
                     required
@@ -37,7 +38,7 @@ export const LoginPage = () => {
                 />
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-xl transition-colors text-lg"
+                    className=" cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-xl transition-colors text-lg"
                 >
                     Далее
                 </button>
