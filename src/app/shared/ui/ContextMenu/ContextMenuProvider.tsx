@@ -15,7 +15,7 @@ export const ContextMenuProvider: FC<PropsWithChildren<{}>> = ({children}) => {
     }, [])
     return (
        <ContextMenu.Provider value={{setContextMenu}}>
-           {!!position && (
+           {position.length > 0 && (
                <ul className={styles.contextMenu}
                style = {{left: position[0], top: position[1]}}
                >

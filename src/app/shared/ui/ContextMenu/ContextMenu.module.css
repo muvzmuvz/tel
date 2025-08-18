@@ -3,7 +3,8 @@
     border-radius: 5px;
     padding: 10px;
     z-index: 1000;
-    background: #598eff;
+    background: oklch(70.7% 0.165 254.624);
+
 }
 
 .contextMenuItem{
