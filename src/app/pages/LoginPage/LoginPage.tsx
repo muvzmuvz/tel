@@ -1,13 +1,62 @@
 import React, {useState} from "react";
 import {SendHorizontal} from "lucide-react";
+import {useNavigate} from "react-router-dom";
+import {CodeInput} from "../../shared/ui/CodeInput";
 
 export const LoginPage = () => {
     const [tel, setTel] = useState("");
+    const [submitting, setSubmitting] = useState(false);
+    const [code, setCode] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-       alert(`Авторизация: ${tel}`);
+        alert(`Авторизация: ${tel}`);
+        setSubmitting(true);
     };
+    const handleVerifyCode = (e: React.FormEvent) => {
+        e.preventDefault();
+        alert(code)
+        setSubmitting(false);
+        setCode('')
+        setTel('')
+        navigate('/')
+    }
+
+
+    if (submitting) {
+        return (
+            <div className="flex items-center justify-center min-h-screen bg-white">
+                <form
+                    onSubmit={handleVerifyCode}
+                    className="w-96 flex flex-col gap-6"
+                >
+                    <div className="flex justify-center">
+                        <div className="w-20 h-20 rounded-full bg-blue-500 flex items-center justify-center">
+                            <SendHorizontal color={"white"} size={35}/>
+                        </div>
+                    </div>
+
+                    <h2 className="text-2xl font-bold text-center text-gray-800">
+                        Вход в Мессенджер
+                    </h2>
+                    <p className="text-center text-gray-500 text-sm">
+                        Пожалуйста, введите код подтверждения
+                    </p>
+                    <CodeInput
+                        length={4}
+                        onComplete={(code) => setCode(code)}
+                    />
+                    <button
+                        type="submit"
+                        className=" cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-xl transition-colors text-lg"
+                    >
+                        Войти
+                    </button>
+                </form>
+            </div>
+        )
+    }
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-white">
@@ -42,6 +91,7 @@ export const LoginPage = () => {
                 >
                     Далее
                 </button>
+
             </form>
         </div>
     );
