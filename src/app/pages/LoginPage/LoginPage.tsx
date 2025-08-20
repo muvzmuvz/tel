@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import {SendHorizontal} from "lucide-react";
-import {useNavigate} from "react-router-dom";
+import {type NavigateFunction, useNavigate} from "react-router-dom";
 import {CodeInput} from "../../shared/ui/CodeInput";
 
 export const LoginPage = () => {
     const [tel, setTel] = useState("");
     const [submitting, setSubmitting] = useState(false);
     const [code, setCode] = useState("");
-    const navigate = useNavigate();
+    const navigate: NavigateFunction = useNavigate();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -16,6 +16,9 @@ export const LoginPage = () => {
     };
     const handleVerifyCode = (e: React.FormEvent) => {
         e.preventDefault();
+        if (code.length < 4) {
+            return alert('Введите код полностью')
+        }
         alert(code)
         setSubmitting(false);
         setCode('')

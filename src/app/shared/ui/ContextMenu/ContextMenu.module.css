@@ -1,17 +1,51 @@
 .contextMenu {
     position: fixed;
-    border-radius: 5px;
-    padding: 10px;
+    min-width: 180px;
+    border-radius: 10px;
+    padding: 8px 0;
     z-index: 1000;
-    background: oklch(0.248 0 89.876 / 0.75);
-
+    background: rgba(25, 25, 25, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    list-style: none;
+    opacity: 0;
+    transform: scale(0.95);
+    animation: fadeIn 0.15s ease-out forwards;
 }
 
-.contextMenuItem{
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+.contextMenuItem {
     display: flex;
+    align-items: center;
     cursor: pointer;
     color: #ffffff;
-    font-size: 16px;
-    font-weight: bold;
-    gap: 5px
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 14px;
+    transition: background 0.2s ease, transform 0.1s ease;
+    gap: 8px;
+    border-radius: 6px;
+}
+
+
+.contextMenuItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(4px);
 }
